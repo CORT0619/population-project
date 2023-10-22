@@ -22,7 +22,6 @@ USER
 PASSWORD
 DATABASE
 PORT
-
 ```
 
 Once you're done the environment file should look like:
@@ -33,8 +32,6 @@ PASSWORD=""
 DATABASE=""
 PORT=""
 ```
-
-
 
 Once all dependencies have been installed, start the project and run:
 ```
@@ -47,7 +44,13 @@ In order to run the development server:
 npm run dev
 ```
 
+## Database
+The database I developed with is a postgresql db from cockroachdb
+
 ## Future Development
 - make sure pg pools is used effectively
 - better error handling
 - implement real caching with redis
+
+### Suggestions
+For any questions, suggestions for improvement, etc. please feel free to create a pull request or reach out to me at cwills2552@gmail.com, thanks!
