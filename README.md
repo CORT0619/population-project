@@ -4,7 +4,13 @@
 - npm version 9
 
 ## Getting Started
-## FUTURE DEVELOPMENT ***
+
+In order to run the development server:
+```
+npm run dev
+```
+
+## Future Developmnet
 - make sure pg pools is used effectively
 - better error handling
 - implement real caching with redis
