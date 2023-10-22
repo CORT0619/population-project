@@ -15,6 +15,27 @@ Then install the project dependencies:
 npm install
 ```
 
+Create a .env file in the root of the project with the following environment variables:
+```
+HOST
+USER
+PASSWORD
+DATABASE
+PORT
+
+```
+
+Once you're done the environment file should look like:
+```
+HOST=""
+USER=""
+PASSWORD=""
+DATABASE=""
+PORT=""
+```
+
+
+
 Once all dependencies have been installed, start the project and run:
 ```
 npm start
