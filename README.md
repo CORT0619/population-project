@@ -1,5 +1,5 @@
 # U.S. City Populations
-## Requirements
+## Minimum Requirements
 - node version 18
 - npm version 9
 
@@ -43,6 +43,11 @@ In order to run the development server:
 ```
 npm run dev
 ```
+
+## Endpoints
+- GET: /api/population/state/:state/city/:city
+- PUT: /api/population/state/:state/city/:city
+
 
 ## Database
 The database I developed with is a postgresql db from cockroachdb
