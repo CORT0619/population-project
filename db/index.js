@@ -20,7 +20,8 @@ export const getPopulation = async (city, state) => {
 	try {
 		const results = await pool.query(`SELECT population FROM population WHERE LOWER(city)=$1 AND LOWER(state)=$2`, [city, state]);
 		if (results.rows.length > 0) {
-			return results.rows[0];
+			const parsed = parseInt(results.rows[0].population);
+			return { population: parsed };
 		} else {
 			throw new Error('The population could not be found.');
 		}

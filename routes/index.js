@@ -12,7 +12,7 @@ async function plugin(fastify, opts) {
 		}
 
 		const cached = utils.checkCache(city, state);
-		if (cached) return cached;
+		if (cached) return { population: cached };
 	
 		const response = await getPopulation(city, state);
 		if (response instanceof Error) {
@@ -20,7 +20,7 @@ async function plugin(fastify, opts) {
 		}
 
 		// store in cache
-		utils.saveToCache(city, state, response.population);
+		utils.saveToCache(city, state, parseInt(response.population));
 		return res.code(200).send(response);
 	
 	});
