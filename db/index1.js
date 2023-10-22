@@ -1,8 +1,19 @@
 import 'dotenv/config';
+import pg from 'pg';
 import pgPromise from 'pg-promise';
 
 const pgp = pgPromise();
 const db = pgp(process.env.DATABASE_URL);
+
+/*
+const pool = new pg.Pool({
+	host: process.env.HOST,
+	user: process.env.USER,
+	password: process.env.PASSWORD,
+	database: process.env.DATABASE,
+	port: process.env.PORT,
+	ssl: true
+});*/
 
 /**
  * 
@@ -12,8 +23,10 @@ const db = pgp(process.env.DATABASE_URL);
  */
 export const getPopulation = async (city, state) => {
 	try {
+		// const results = await pool.query(`SELECT population FROM population WHERE LOWER(city)=$1 AND LOWER(state)=$2`, [city, state]);
 		const results = await db.any(`SELECT population FROM population WHERE LOWER(city)=$1 AND LOWER(state)=$2`, [city, state]);
-		if (results.length > 0) {
+		if (/*results.rows.length > 0*/results.length > 0) {
+			// const parsed = parseInt(results.rows[0].population);
 			const parsed = parseInt(results[0].population);
 			return { population: parsed };
 		} else {
@@ -34,17 +47,21 @@ export const getPopulation = async (city, state) => {
  */
 export const updatePopulation = async (city, state, pop) => {
 	try {
+		// const results1 = await pool.query(`SELECT id FROM population WHERE LOWER(city)=$1 AND LOWER(state)=$2`, [city, state]);
 		const results1 = await db.any(`SELECT id FROM population WHERE LOWER(city)=$1 AND LOWER(state)=$2`, [city, state]);
-		if (results1.length > 0) {
+		if (/*results1.rows.length > 0*/ results1.length > 0) {
+			// const updateResponse = await pool.query(`UPDATE population SET population=$1 WHERE LOWER(city)=$2 AND LOWER(state)=$3`, [pop, city, state]);
 			const updateResponse = await db.any(`UPDATE population SET population=$1 WHERE LOWER(city)=$2 AND LOWER(state)=$3`, [pop, city, state]);
-			if (updateResponse.length === 0) {
+			console.log('updateResponse ', updateResponse);
+			if (/*updateResponse.rowCount === 1*/updateResponse.length === 0) {
 				return 200;
 			} else {
 				throw new Error('there was an error updating the record.');
 			}
-		} else if (results1.length === 0) {
+		} else if (/*results1.rows.length === 0*/results1.length === 0) {
 			const insertRes = await insertCityStatePop(city, state, pop);
-			if (insertRes.length === 0) {
+			console.log('insertRes ', insertRes);
+			if (/*insertRes.rowCount === 1*/insertRes.length === 0) {
 				return 201;
 			} else {
 				throw new Error('there was an error inserting the new record.');
@@ -58,9 +75,14 @@ export const updatePopulation = async (city, state, pop) => {
 
 const insertCityStatePop = async (city, state, population) => {
 	try {
+		// return await pool.query(`INSERT INTO population (city, state, population) VALUES($1, $2, $3)`, [city, state, population]);
 		return await db.any(`INSERT INTO population (city, state, population) VALUES($1, $2, $3)`, [city, state, population]);
 	} catch (err) {
 		console.error('an error occurred inserting the record: ', err);
 		throw new Error(err);
 	}
 };
+
+// pool.on('error', (err, client) => {
+// 	console.error('an unexpected error occurred ', err);
+// });

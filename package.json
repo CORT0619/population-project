@@ -16,7 +16,7 @@
     "@fastify/express": "^2.3.0",
     "dotenv": "^16.3.1",
     "fastify": "^4.24.2",
-    "pg": "^8.11.3"
+    "pg-promise": "^11.5.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

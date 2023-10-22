@@ -6,7 +6,6 @@ export const checkCache = (city, state) => {
 	if (key && cache[key]) {
 		return cache[key];
 	}
-	console.log('cache ', cache);
 };
 
 export const saveToCache = (city, state, population) => {
@@ -14,7 +13,6 @@ export const saveToCache = (city, state, population) => {
 	if (key) {
 		cache[key] = population;
 	}
-	console.log('cache ', cache)
 };
 
 const transformCityState = (city, state) => {

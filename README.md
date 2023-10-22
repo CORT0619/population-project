@@ -58,7 +58,7 @@ Updates the population or inserts a new record if the city, state doesn't curren
 The database I developed with is a postgresql db from cockroachdb
 
 ## Future Development
-- make sure pg pools is used effectively
+- reimplement pg and make sure pg pools is used effectively
 - better error handling
 - implement real caching with redis
 
