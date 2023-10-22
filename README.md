@@ -46,8 +46,13 @@ npm run dev
 
 ## Endpoints
 - GET: /api/population/state/:state/city/:city
-- PUT: /api/population/state/:state/city/:city
+Given the city and state as route params
+Returns the current population for the city and state provided
 
+
+- PUT: /api/population/state/:state/city/:city
+Given the city and state as route params and the population in the body
+Updates the population or inserts a new record if the city, state doesn't currently exist
 
 ## Database
 The database I developed with is a postgresql db from cockroachdb
