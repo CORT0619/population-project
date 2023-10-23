@@ -2,7 +2,7 @@ import 'dotenv/config';
 import pgPromise from 'pg-promise';
 
 const pgp = pgPromise();
-const db = pgp("postgresql://crystal_williams:AwIg_ZF6GxvMWcIW6jkJEQ@fair-doge-5895.g8z.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full");
+const db = pgp(process.env.DATABASE_URL);
 
 /**
  * 
